@@ -6,7 +6,6 @@ exports.register = async (req, res) => {
     res.status(500).send("Server error");
   }
 };
-
 exports.listUser = async (req, res) => {
   try {
     res.send("listUser success");
