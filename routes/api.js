@@ -10,6 +10,8 @@ const { register, listUser } = require("../contrllers/auth");
 //http://localhost:4000/api/auth
 router.get("/auth", listUser);
 
-router.post("/aut", register);
+// router.post("/auth", register);
+
+router.post("/auth", register);
 
 module.exports = router;
