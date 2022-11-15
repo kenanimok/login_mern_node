@@ -6,7 +6,7 @@ exports.register = async (req, res) => {
   try {
     // Check user
     const { username, password } = req.body;
-    const user = await User.findOne({ username });
+    var user = await User.findOne({ username });
     if (user) {
       return res.status(400).send("User ซ้ำ Already exists t");
     }
@@ -15,7 +15,7 @@ exports.register = async (req, res) => {
       username,
       password,
     });
-    // Encrypt
+
     user.password = await bcrypt.hash(password, salt);
     await user.save();
 
@@ -38,7 +38,7 @@ exports.listUser = async (req, res) => {
 exports.login = async (req, res) => {
   try {
     const { username, password } = req.body;
-    const user = await User.findOneAndUpdate({ username }, { new: true });
+    var user = await User.findOneAndUpdate({ username }, { new: true });
     if (user && user.enabled) {
       // Check Password
       const isMatch = await bcrypt.compare(password, user.password);
@@ -46,14 +46,12 @@ exports.login = async (req, res) => {
       if (!isMatch) {
         return res.status(400).send("Password Invalid!!");
       }
-      // Payload
       const payload = {
         user: {
           username: user.username,
           role: user.role,
         },
       };
-      // Generate Token
       jwt.sign(payload, "jwtSecret", { expiresIn: 3600 }, (err, token) => {
         if (err) throw err;
         res.json({ token, payload });
