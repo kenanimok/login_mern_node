@@ -6,7 +6,7 @@ exports.register = async (req, res) => {
   try {
     // Check user
     const { username, password } = req.body;
-    var user = await User.findOne({ username });
+    const user = await User.findOne({ username });
     if (user) {
       return res.status(400).send("User ซ้ำ Already exists t");
     }
@@ -38,7 +38,7 @@ exports.listUser = async (req, res) => {
 exports.login = async (req, res) => {
   try {
     const { username, password } = req.body;
-    var user = await User.findOneAndUpdate({ username }, { new: true });
+    const user = await User.findOneAndUpdate({ username }, { new: true });
     if (user && user.enabled) {
       // Check Password
       const isMatch = await bcrypt.compare(password, user.password);

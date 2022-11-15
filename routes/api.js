@@ -4,14 +4,8 @@ const router = express.Router();
 const { register, listUser, login } = require("../contrllers/auth");
 const { auth } = require("../middleware/auth");
 
-// router.get("/", (req, res) => {
-//   res.send("hello api ken 55");
-// });
-
 //http://localhost:4000/api/auth
 router.get("/auth", listUser);
-
-// router.post("/auth", register);
 
 router.post("/auth", register);
 
