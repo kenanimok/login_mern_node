@@ -8,7 +8,7 @@ const {
   changeStatus,
   changRole,
 } = require("../contrllers/users");
-// const { auth } = require("../middleware/auth");
+const { auth, adminCheck } = require("../middleware/auth");
 
 // http://localhost:4000/api/listusers
 router.get("/listusers", listUser);
@@ -24,5 +24,8 @@ router.put("/status", changeStatus);
 
 //http://localhost:4000/api/role
 router.put("/role", changRole);
+
+// http://localhost:4000/api/readuser
+// router.get("/readuers/:id", readUsers);
 
 module.exports = router;

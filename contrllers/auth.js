@@ -98,3 +98,29 @@ exports.login = async (req, res) => {
     res.status(500).send("Server Error!");
   }
 };
+
+exports.currentUser = async (req, res) => {
+  try {
+    // model User
+    // console.log("controller", req.user);
+    const user = await User.findOne({ username: req.user.username })
+      .select("-password")
+      .exec();
+    res.send(user);
+  } catch (err) {
+    console.log(err);
+    res.status(500).send("Server Error!");
+  }
+};
+
+// exports.readUsers = async (req, res) => {
+//   try {
+//     // Code
+//     const id = req.params.id;
+//     const user = await User.findOne({ _id: id }).select("-password").exec();
+//     res.send(user);
+//   } catch (err) {
+//     console.log(err);
+//     res.status(500).send("Server Error!");
+//   }
+// };
