@@ -7,7 +7,7 @@ const { register, listUser, login } = require("../contrllers/auth");
 //http://localhost:4000/api/auth
 router.get("/auth", listUser);
 
-router.post("/auth", register);
+router.post("/regis", register);
 
 router.post("/login", login);
 

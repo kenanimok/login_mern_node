@@ -17,3 +17,13 @@ exports.auth = (req, res, next) => {
     res.status(401).send("Token Invavid!!");
   }
 };
+
+exports.adminCheck = async (req, res, next) => {
+  try {
+    const { username } = req.user;
+    const adminUser = await User.findOne({ username }).exec();
+  } catch (err) {
+    console.log(err);
+    res.status(401).send("Admin Accrss denined");
+  }
+};

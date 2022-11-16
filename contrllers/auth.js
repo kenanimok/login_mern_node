@@ -6,7 +6,7 @@ exports.register = async (req, res) => {
   try {
     // Check user
     const { username, password } = req.body;
-    var user = await User.findOne({ username });
+    let user = await User.findOne({ username });
     if (user) {
       return res.status(400).send("User ซ้ำ Already exists t");
     }
