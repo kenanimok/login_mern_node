@@ -1,6 +1,5 @@
 const bcrypt = require("bcryptjs");
 const User = require("../model/User");
-const jwt = require("jsonwebtoken");
 
 exports.listUser = async (req, res) => {
   try {
@@ -13,19 +12,21 @@ exports.listUser = async (req, res) => {
 };
 
 exports.updateUser = async (req, res) => {
+  console.log(req.body);
   try {
-    var { id, password } = req.body.values;
+    // Code
+    var { _id, password } = req.body;
     const salt = await bcrypt.genSalt(10);
     var enPassword = await bcrypt.hash(password, salt);
 
     const user = await User.findOneAndUpdate(
-      { _id: id },
+      { _id: _id },
       { password: enPassword }
     );
     res.send(user);
   } catch (err) {
     console.log(err);
-    res.status(500).send("Server error");
+    res.status(500).send("Server Error!");
   }
 };
 
@@ -45,12 +46,26 @@ exports.changeStatus = async (req, res) => {
     // Code
     console.log(req.body);
     const user = await User.findOneAndUpdate(
-      { _id: req.body.id },
+      { _id: req.body._id },
       { enabled: req.body.enabled }
     );
     res.send(user);
   } catch (err) {
     console.log(err);
     res.status(500).send("Server Error!");
+  }
+};
+
+exports.changRole = async (req, res) => {
+  try {
+    console.log(req.body);
+    const user = await User.findOneAndUpdate(
+      { _id: req.body._id },
+      { role: req.body.role }
+    );
+    res.send(user);
+  } catch (err) {
+    console.log(err);
+    res.status(500).send("server Error");
   }
 };
