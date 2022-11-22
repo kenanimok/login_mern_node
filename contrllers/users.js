@@ -4,6 +4,9 @@ const User = require("../model/User");
 exports.listUser = async (req, res) => {
   try {
     const user = await User.find({}).select("-password").exec();
+    // var enPassword = await bcrypt.hash(password, salt);
+
+    // const user = await User.find({});
     res.send(user);
   } catch (err) {
     console.log(err);

@@ -9,8 +9,8 @@ const {
 } = require("../contrllers/auth");
 const { auth, adminCheck } = require("../middleware/auth");
 
-//http://localhost:4000/api/auth
-router.get("/auth", listUser);
+// http://localhost:4000/api/auth
+// router.get("/auth", listUser);
 
 //@Endpoint  http://localhost:4000/api/regis
 router.post("/regis", register);
