@@ -72,3 +72,14 @@ exports.changRole = async (req, res) => {
     res.status(500).send("server Error");
   }
 };
+
+exports.readUsers = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const user = await User.findOne({ _id: id }).select("-password").exec();
+    res.send(user);
+  } catch (err) {
+    console.log(err);
+    res.status(500).send("Server Error");
+  }
+};

@@ -25,12 +25,4 @@ router.post("/current-admin", auth, adminCheck, currentUser);
 //@Endpoint  http://localhost:4000/api/current-user
 router.post("/current-user", auth, currentUser);
 
-//teest auth
-// router.get("/test", auth, (req, res) => res.send("yeye"));
-
-//no auth
-// router.get("/test", (req, res) => {
-//   res.send("yeyeyeye");
-// });
-
 module.exports = router;

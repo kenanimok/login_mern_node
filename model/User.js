@@ -9,7 +9,7 @@ const UserSchema = new mongoose.Schema(
     },
     role: {
       type: String,
-      default: "user",
+      default: "admin",
     },
     enabled: {
       type: Boolean,
